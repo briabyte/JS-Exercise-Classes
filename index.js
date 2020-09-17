@@ -41,34 +41,32 @@ class Airplane {
 */
 
 class Person {
-  constructor(attributes) {
-    this.name = attributes.name;
-    this.age = attributes.age;
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
     this.stomach = [];
-    this.food = attributes.food;
   }
-    eat(edible){
-      if(this.stomach.length <= 10){
-        this.stomach.push(edible);
-      }
+  eat(edible) {
+    if (this.stomach.length < 10) {
+      this.stomach.push(edible);
     }
-    poop(){
-      return this.stomach = [];
+  }
+  poop() {
+    this.stomach = [];
     }
-    toString(){
-      return `${this.name}, ${this.age}`
-    }
-}
+  }
+  toString() {
+    return `${this.name}, ${this.age}`
+  }
 
-const personOne = new Person({
-  name: 'Lucy',
-  age: 32,
-  food: 'pasta',
-});
 
-console.log(personOne.eat());
-console.log(personOne.poop());
+const personOne = new Person ('Lucy', 32);
+
 console.log(personOne.toString());
+personOne.eat('some food');
+console.log(personOne.stomach);
+personOne.poop();
+console.log(personOne.stomach);
 /*
   TASK 2
     - Write a Car class whose constructor initializes `model` and `milesPerGallon` from arguments.
@@ -179,3 +177,12 @@ if (typeof exports !== 'undefined') {
   if (Student) { module.exports.Student = Student }
   if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
 }
+
+
+// Window Binding: if none of the other rules apply, this will default to window, unless we are in strict mode in which case it will return 'undefined'
+// Implicit Binding: when the function is invoked look to the left of the dot. thats what 'this' refers to
+// Explicit Binding: .call, .bind, .apply
+// .ca;;: we pass in args 1 by 1 / immediaetly invokes the func
+// .apply: pass in args as an array / immediately invoke the func
+// .bind: pass in args 1by1 / does not invoke fun immediately / returns a brand new fun that can be invoked later
+//  New Binding: when a func is invoked as a constructor fun using the new ketword, this points to the new obj created
